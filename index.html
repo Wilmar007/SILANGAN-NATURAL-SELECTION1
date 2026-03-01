@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Selection Simulator (PhET-style Layout)</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-controls">
+      <div class="title-wrap">
+        <p class="title-kicker">🧬 Evolution Lab</p>
+        <h1>Natural Selection Simulator</h1>
+        <p>Variation and adaptation in a changing environment</p>
+      </div>
+      <div class="generation-indicator">Generation: <span id="generationValue">0</span></div>
+      <div class="playback-controls">
+        <button id="visualPresetBtn" class="btn btn-small" type="button">Style: Nature Rich</button>
+        <button id="soundToggleBtn" class="btn btn-small" type="button">Sound: On</button>
+        <button id="playBtn" class="btn btn-primary">Play</button>
+        <button id="pauseBtn" class="btn">Pause</button>
+        <button id="resetBtn" class="btn btn-danger">Reset</button>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <aside class="panel left-panel">
+        <h2>Data</h2>
+        <div class="toggle-list">
+          <label><input type="checkbox" id="toggleTotal" checked /> Total</label>
+          <label><input type="checkbox" id="toggleLightFur" checked /> Light Fur</label>
+          <label><input type="checkbox" id="toggleDarkFur" checked /> Dark Fur</label>
+          <label><input type="checkbox" id="toggleStraightEars" /> Straight Ears</label>
+          <label><input type="checkbox" id="toggleFloppyEars" /> Floppy Ears</label>
+          <label><input type="checkbox" id="toggleShortTeeth" /> Short Teeth</label>
+          <label><input type="checkbox" id="toggleLongTeeth" /> Long Teeth</label>
+          <label><input type="checkbox" id="toggleDataProbe" /> Data Probe</label>
+        </div>
+      </aside>
+
+      <section class="center-stage">
+        <section class="panel ecosystem-panel">
+          <h2>Ecosystem</h2>
+          <canvas id="ecosystemCanvas" width="900" height="380" aria-label="Animated rabbit ecosystem"></canvas>
+        </section>
+
+        <section class="panel graph-panel">
+          <div class="graph-header">
+            <h2>Population Graph</h2>
+            <div class="zoom-controls">
+              <button id="zoomInBtn" class="btn btn-small">+</button>
+              <button id="zoomOutBtn" class="btn btn-small">-</button>
+            </div>
+          </div>
+
+          <div class="graph-meta">
+            <span>X-axis: Generation</span>
+            <span>Y-axis: Population</span>
+          </div>
+
+          <div class="graph-canvas-wrap">
+            <canvas id="populationGraph" width="900" height="260" aria-label="Population graph"></canvas>
+          </div>
+
+          <div class="graph-controls">
+            <label class="slider-wrap" for="generationSlider">
+              <span>Generation Slider</span>
+              <input id="generationSlider" type="range" min="0" max="100" value="0" />
+            </label>
+
+            <fieldset class="view-toggle">
+              <legend>View</legend>
+              <label><input type="radio" name="graphView" value="population" checked /> Population</label>
+              <label><input type="radio" name="graphView" value="proportions" /> Proportions</label>
+              <label><input type="radio" name="graphView" value="pedigree" /> Pedigree</label>
+            </fieldset>
+          </div>
+
+          <section class="results-panel" aria-live="polite">
+            <h3>Generation Results</h3>
+            <p id="generationSummaryCurrent" class="summary-current">Generation 0: waiting for simulation data.</p>
+            <div id="generationResultsList" class="results-list"></div>
+          </section>
+        </section>
+      </section>
+
+      <aside class="panel right-panel">
+        <h2>Traits &amp; Breeding</h2>
+
+        <section class="sub-panel">
+          <h3>Trait Selection</h3>
+
+          <fieldset class="trait-group">
+            <legend>Fur</legend>
+            <label><input type="radio" name="furSelection" value="light" checked /> Light</label>
+            <label><input type="radio" name="furSelection" value="dark" /> Dark</label>
+          </fieldset>
+
+          <fieldset class="trait-group">
+            <legend>Ears</legend>
+            <label><input type="radio" name="earsSelection" value="straight" checked /> Straight</label>
+            <label><input type="radio" name="earsSelection" value="floppy" /> Floppy</label>
+          </fieldset>
+
+          <fieldset class="trait-group">
+            <legend>Teeth</legend>
+            <label><input type="radio" name="teethSelection" value="short" checked /> Short</label>
+            <label><input type="radio" name="teethSelection" value="long" /> Long</label>
+          </fieldset>
+
+          <button id="addMateBtn" class="btn btn-primary btn-full">Add Mate</button>
+        </section>
+
+        <section class="sub-panel">
+          <h3>Environmental Factors</h3>
+          <div class="toggle-list">
+            <label><input type="checkbox" id="wolvesToggle" /> Wolves</label>
+            <label><input type="checkbox" id="toughFoodToggle" /> Tough Food</label>
+            <label><input type="checkbox" id="limitedFoodToggle" /> Limited Food</label>
+          </div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="./genetics.js" defer></script>
+  <script src="./selection.js" defer></script>
+  <script src="./pedigree.js" defer></script>
+  <script src="./ui.js" defer></script>
+  <script src="./simulation.js" defer></script>
+  <script src="./presets.js" defer></script>
+  <script src="./sounds.js" defer></script>
+  <script src="./animation.js" defer></script>
+  <script src="./graph.js" defer></script>
+</body>
+</html>
